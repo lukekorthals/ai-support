@@ -1,0 +1,286 @@
+# These are the global settings
+
+---
+global:
+  canvas:
+    course_id: 47355
+  
+  llm:
+    model: "gpt-4o"
+    grading_temperature: 0.0
+    feedback_temperature: 1.0
+    n_choices_grading: 1 
+    n_choices_feedback: 1
+    prompts:
+      grading: 
+        system_prompt: "resources/llm_prompts/grading/system_prompt.txt"
+        user_prompt: "resources/llm_prompts/grading/user_prompt.txt"
+      feedback_questionwise: 
+        system_prompt: "resources/llm_prompts/feedback_questionwise/system_prompt.txt"
+        user_prompt: "resources/llm_prompts/feedback_questionwise/user_prompt.txt"
+      feedback_summary: 
+        system_prompt: "resources/llm_prompts/feedback_summary/system_prompt.txt"
+        user_prompt: "resources/llm_prompts/feedback_summary/user_prompt.txt"
+  
+      
+
+  randomization:
+    seed: 42
+    groups:
+      - "ABAB"
+      - "BABA"
+      - "ABBA"
+      - "BAAB"
+      - "AABB"
+      - "BBAA"
+    
+  paths:
+    resources: "resources"
+    submissions: "submissions"
+    # Submissions are stored using this path template.
+    student_submission_template: "submissions/stu-{student_id}/week-{week}/stu-{student_id}_ass-{assignment_id}_try-{attempt}_que-{question_id}_att-{attachment_id}"
+    # Student submissions are jsonified
+    student_submission_json_template: "submissions/stu-{student_id}/week-{week}/json/stu-{student_id}_ass-{assignment_id}_try-{attempt}_submission.json"
+    # This is the report that contains the entire chat history with the LLM
+    llm_completion_report_template: "submissions/stu-{student_id}/week-{week}/llm_reports/stu-{student_id}_ass-{assignment_id}_try-{attempt}_LLMCompletionReport.md"
+    # This is the report the student receives
+    llm_feedback_report_template: "submissions/stu-{student_id}/week-{week}/llm_reports/stu-{student_id}_ass-{assignment_id}_try-{attempt}_Feedback.pdf"     # This is the report the student receives
+    # Students wont receive the grading report
+    llm_grading_report_template: "submissions/stu-{student_id}/week-{week}/llm_reports/stu-{student_id}_ass-{assignment_id}_try-{attempt}_Grading.pdf"
+
+weeks:
+  1:
+    canvas:
+      assignment_id: 508875
+      quiz_id: 101417
+      r_quiz_question_id: 1205946
+      adv_quiz_question_id: 1205946
+    resources:
+      - "questions"
+      - "rubrics"
+      - "solutions"
+      - "goals"
+    # What teacher grades what group?
+    grading:
+      513294: 
+        - "ABAB"
+        - "BABA"
+        - "ABBA"
+        - "BAAB"
+        - "AABB"
+        - "BBAA"
+      307207:
+        - ""
+      387149:
+        - ""
+      445599:
+        - ""
+    global_rubrics:
+      - "Do not subtract points for typos in comments if it is clear the student understands the concept and provided a correct answer"
+      - "Do not subtract points for using = instead of <- in R if the code is correct"
+      - "Subtract 1 point if the student did not attempt the task."
+    lock_grades_date: "2025-01-13"
+ 
+  2:
+    canvas:
+      assignment_id: 508895
+      quiz_id: 101425
+      r_quiz_question_id: 1205979
+      adv_quiz_question_id: 1205980
+    resources:
+      - "questions"
+      - "rubrics"
+      - "solutions"
+      - "goals"
+    # What teacher grades what group?
+    grading:
+      513294:
+        - ""
+      307207: 
+        - "ABAB"
+        - "BABA"
+        - "ABBA"
+        - "BAAB"
+        - "AABB"
+        - "BBAA"
+      387149:
+        - ""
+      445599:
+        - ""
+    global_rubrics:
+      - "Do not subtract points for typos in comments if it is clear the student understands the concept and provided a correct answer"
+      - "Do not subtract points for using = instead of <- in R if the code is correct"
+      - "The student may have reused a plot they previously defined"
+      - "Subtract 1 point if the student did not attempt the task."
+    lock_grades_date: "2025-01-20"
+
+  3:
+    canvas:
+      assignment_id: 508890 
+      quiz_id: 101423
+      r_quiz_question_id: 1205973
+      adv_quiz_question_id: 1205974
+    resources:
+      - "questions"
+      - "rubrics"
+      - "solutions"
+      - "goals"
+    # What teacher grades what group?
+    grading:
+      513294:
+        - ""
+      445599: 
+        - "ABAB"
+        - "BABA"
+        - "ABBA"
+      387149:
+        - "BAAB"
+        - "AABB"
+        - "BBAA"
+      307207:
+        - ""
+    global_rubrics:
+      - "Do not subtract points for typos in comments if it is clear the student understands the concept and provided a correct answer"
+      - "Do not subtract points for using = instead of <- in R if the code is correct"
+      - "Subtract 1 point if the student did not attempt the task."
+    lock_grades_date: "2025-01-26"
+
+  4:
+    canvas:
+      assignment_id: 508900
+      quiz_id: 101427
+      r_quiz_question_id: 1205986
+      adv_quiz_question_id: 1205987
+    resources:
+      - "questions"
+      - "rubrics"
+      - "solutions"
+      - "goals"
+    # What teacher grades what group?
+    grading:
+      513294:
+        - ""
+      387149: 
+        - "ABAB"
+        - "BABA"
+        - "ABBA"
+      445599:
+        - "BAAB"
+        - "AABB"
+        - "BBAA"
+      307207:
+        - ""
+
+surveys:
+  survey_questions:
+    age: "resources/survey_questions/age.json" 
+    gender: "resources/survey_questions/gender.json"
+    exp_R: "resources/survey_questions/programming_experience_R.json"
+    exp_code: "resources/survey_questions/programming_experience.json"
+    self_concept: "resources/survey_questions/R_self_concept.json"
+    anxiety: "resources/survey_questions/R_anxiety.json"
+    use_of_feedback: "resources/survey_questions/use_of_feedback.json"
+    time_feedback: "resources/survey_questions/time_feedback.json"
+    time_coding_challenge: "resources/survey_questions/time_coding_challenge.json"
+    progress_coding_challenge: "resources/survey_questions/progress_coding_challenge.json"
+    feedback_evaluation: "resources/survey_questions/feedback_evaluation.json"
+    coding_challenge_submission: "resources/survey_questions/coding_challenge_submission.json"
+
+  survey_definitions:
+    pre:
+      title: "Pre Course Survey"
+      description: "This survey is completed in the beginning of the first lecture."
+      questions:
+        - age
+        - gender
+        - exp_R
+        - exp_code
+        - self_concept
+        - anxiety
+
+    assignment_1_A:
+      title: "Post Assignment 1 - Feedback"
+      description: "This survey is completed in the beginning of the lecture after Assignment 1.\nYou should only see this survey if you received feedback on Assignment 1."
+      questions:
+        - self_concept 
+        - anxiety 
+        - use_of_feedback
+        - time_feedback
+        - time_coding_challenge
+        - progress_coding_challenge
+        - coding_challenge_submission
+    
+    assignment_1_B:
+      title: "Post Assignment 1 - No Feedback"
+      description: "This survey is completed in the beginning of the lecture after Assignment 1.\nYou should only see this survey if you did not receive feedback on Assignment 1."
+      questions:
+        - self_concept 
+        - anxiety 
+
+    assignment_2_A:
+      title: "Post Assignment 2 - Feedback"
+      description: "This survey is completed in the beginning of the lecture after Assignment 2.\nYou should only see this survey if you received feedback on Assignment 2."
+      questions:
+        - self_concept 
+        - anxiety 
+        - use_of_feedback
+        - time_feedback
+        - time_coding_challenge
+        - progress_coding_challenge
+        - coding_challenge_submission
+
+    assignment_2_B:
+      title: "Post Assignment 2 - No Feedback"
+      description: "This survey is completed in the beginning of the lecture after Assignment 2.\nYou should only see this survey if you did not receive feedback on Assignment 2."
+      questions:
+        - self_concept 
+        - anxiety
+
+    assignment_3_A:
+      title: "Post Assignment 3 - Feedback"
+      description: "This survey is completed in the beginning of the lecture after Assignment 3.\nYou should only see this survey if you received feedback on Assignment 3."
+      questions:
+        - self_concept 
+        - anxiety 
+        - use_of_feedback
+        - time_feedback
+        - time_coding_challenge
+        - progress_coding_challenge
+        - coding_challenge_submission
+
+    assignment_3_B:
+      title: "Post Assignment 3 - No Feedback"
+      description: "This survey is completed in the beginning of the lecture after Assignment 3.\nYou should only see this survey if you did not receive feedback on Assignment 3."
+      questions:
+        - self_concept 
+        - anxiety
+
+    assignment_4_A:
+      title: "Post Assignment 4 - Feedback"
+      description: "This survey is completed in the beginning of the lecture after Assignment 4.\nYou should only see this survey if you received feedback on Assignment 4."
+      questions:
+        - self_concept 
+        - anxiety 
+        - use_of_feedback
+        - time_feedback
+        - time_coding_challenge
+        - progress_coding_challenge
+        - coding_challenge_submission
+
+    assignment_4_B:
+      title: "Post Assignment 4 - No Feedback"
+      description: "This survey is completed in the beginning of the lecture after Assignment 4.\nYou should only see this survey if you did not receive feedback on Assignment 4."
+      questions:
+        - self_concept 
+        - anxiety
+
+    post:
+      title: "Post Course Survey"
+      description: "This survey is completed after the final exam."
+      questions:
+        - self_concept 
+        - anxiety
+        - feedback_evaluation
+
+
+

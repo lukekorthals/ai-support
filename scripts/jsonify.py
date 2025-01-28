@@ -47,31 +47,31 @@ def jsonify(input_files: str | list, output_filename: str) -> list:
     return indicators
 
 
-def jsonify_resources(week: int, resources_path: str = "resources") -> dict:
-    """Jsonify all resources for a given week."""
-    assert week in range(1, 5)
+def jsonify_resources(assignment_idx: int, resources_path: str = "resources") -> dict:
+    """Jsonify all resources for a given assignment."""
+    assert assignment_idx in range(1, 5)
 
     # Ignore json and yaml files
     indicators_neg = [".json", ".yaml", ".html", "OLD"]
     
     # Create file lists
     file_lists = {
-        "questions": create_file_list(f"{resources_path}/week-{week}", 
-                                    indicators_pos=["assignment"], 
+        "questions": create_file_list(f"{resources_path}/assignment-{assignment_idx}", 
+                                    indicators_pos=["questions"], 
                                     indicators_neg=indicators_neg),
-        "rubrics": create_file_list(f"{resources_path}/week-{week}", 
+        "rubrics": create_file_list(f"{resources_path}/assignment-{assignment_idx}", 
                                 indicators_pos=["rubrics"], 
                                 indicators_neg=indicators_neg),
-        "solutions": create_file_list(f"{resources_path}/week-{week}", 
+        "solutions": create_file_list(f"{resources_path}/assignment-{assignment_idx}", 
                                     indicators_pos=["solutions"], 
                                     indicators_neg=indicators_neg),
-        "goals": create_file_list(f"{resources_path}/week-{week}", 
+        "goals": create_file_list(f"{resources_path}/assignment-{assignment_idx}", 
                                 indicators_pos=["goals"], 
                                 indicators_neg=indicators_neg)
     }
     
     # jsonify each file list
-    result = {key: jsonify(file_lists[key], f"{resources_path}/week-{week}/json/week-{week}_{key}.json") for key in file_lists}
+    result = {key: jsonify(file_lists[key], f"{resources_path}/assignment-{assignment_idx}/json/assignment-{assignment_idx}_{key}.json") for key in file_lists}
     result = {key: sorted(result[key], key=lambda x: (x.split('#')[1].strip('0123456789'), int(''.join(filter(str.isdigit, x))))) for key in result}
     
     # Make sure all indicators are the same for each resource

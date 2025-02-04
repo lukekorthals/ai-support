@@ -2,6 +2,7 @@
 
 # Package imports
 import json
+import numpy as np
 import os
 import pandas as pd
 import re
@@ -247,3 +248,10 @@ def extract_html_content(text: str, tag: str):
     
     # Flatten the matches to handle the two different capturing groups
     return "\n".join([m[0] or m[1] for m in matches])
+
+
+def get_weighted_points(points: dict, weights: dict) -> dict:
+    return {key: np.float32(points[key]) * np.float32(weights[key]) for key in points.keys()}
+
+def get_sum_points_for_pattern(points: dict, pattern: str) -> float:
+    return np.sum([np.float32(points[key]) for key in points.keys() if re.match(pattern, key)])

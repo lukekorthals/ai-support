@@ -4,6 +4,8 @@
 global:
   canvas:
     course_id: 47355
+  grading:
+    max_grade: 10
   
   llm:
     model: "gpt-4o"

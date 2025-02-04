@@ -67,7 +67,10 @@ def jsonify_resources(assignment_idx: int, resources_path: str = "resources") ->
                                     indicators_neg=indicators_neg),
         "goals": create_file_list(f"{resources_path}/assignment-{assignment_idx}", 
                                 indicators_pos=["goals"], 
-                                indicators_neg=indicators_neg)
+                                indicators_neg=indicators_neg),
+        "weights": create_file_list(f"{resources_path}/assignment-{assignment_idx}",
+                                    indicators_pos=["weights"],
+                                    indicators_neg=indicators_neg)
     }
     
     # jsonify each file list

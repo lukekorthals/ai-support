@@ -11,6 +11,10 @@ from scripts.utils import read_files_to_dict
 with open("settings.yaml") as f:
     settings = yaml.safe_load(f)
 
+# Grading
+global MAX_GRADE
+MAX_GRADE = settings["global"]["grading"]["max_grade"]
+
 # Week
 global ASSIGNMENTS
 ASSIGNMENTS = settings["assignments"]

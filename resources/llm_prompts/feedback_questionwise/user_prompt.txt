@@ -31,5 +31,5 @@ Format your response similar to this example and keep it to the point:
     y <- runif(n)
     ```  
 
-If you want to learn more about simulating data in R, consider asking the following question during the next lecture: *`From what distributions can we sample random data in R?`*<feedback>
+If you want to learn more about simulating data in R, consider asking the following question during the next lecture: *`From what distributions can we sample random data in R?`*</feedback>
 </formatting-example>

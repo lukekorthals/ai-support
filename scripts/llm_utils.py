@@ -6,17 +6,17 @@ from scripts.utils import ensure_folder_exists
 def create_openai_message(role: str, content: str) -> list:
     return [{"role": role, "content": content}]
 
-def prompt_gpt(openai_client, model, messages, pkl_out_path: str, **kwargs) -> Completion:
+def prompt_gpt(openai_client, model, messages, pkl_out_path: str, pkl_this: bool = True, **kwargs) -> Completion:
     # Prompt GPT
     completion = openai_client.chat.completions.create(model=model, 
                                                        messages=messages, 
                                                        **kwargs)
-    # Create folder if not exists
-    ensure_folder_exists(pkl_out_path)
+    # Pickle the completion
+    if pkl_this:
+        ensure_folder_exists(pkl_out_path)
+        pkl.dump(completion, open(pkl_out_path, "wb"))
 
-    # Pickle and return the completion
-    pkl.dump(completion, open(pkl_out_path, "wb"))
     return completion
 
-def format_prompt(prompt, formatting_dict, default_value = "<NOT PROVIDED>"):
-    return prompt.format_map(defaultdict(lambda: default_value, formatting_dict))
+def format_with_default(text, formatting_dict, default_value = "<NOT PROVIDED>"):
+    return text.format_map(defaultdict(lambda: default_value, formatting_dict))

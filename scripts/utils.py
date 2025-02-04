@@ -6,6 +6,7 @@ import numpy as np
 import os
 import pandas as pd
 import re
+from typing import Tuple
 import yaml
 
 
@@ -59,22 +60,23 @@ def load_jsonified_resources(assignment_nr: int, resources_path: str = "resource
 
 
 def deduplicate_highest_attempt(file_paths):
-    """Finds the highest attempt for each unique file and returns the list of file paths with the highest attempt"""
-    # Dictionary to store the highest attempt for each unique submission
+    """
+    Finds the highest attempt for each unique file (ignoring `try-(\d+)`) 
+    and returns the list of file paths with the highest attempt.
+    """
     submission_dict = {}
 
     for path in file_paths:
-        # Extract the unique key and the attempt number using regex
-        match = re.search(r'(.*_try-)(\d+)(.*)_att-(\d+)', path)
-        if match:
-            base_key = match.group(1) + match.group(3)  # Unique key without the attempt number
-            attempt_number = int(match.group(2))  # Extract the attempt number
-            
-            # Keep the path with the highest attempt
-            if base_key not in submission_dict or attempt_number > submission_dict[base_key][1]:
-                submission_dict[base_key] = (path, attempt_number)
+        # Remove try-(\d+) to get the unique key
+        normalized_path = re.sub(r'try-\d+', 'try-', path)
+        match = re.search(r'try-(\d+)', path)
+        
+        attempt_number = int(match.group(1)) if match else 0
+        
+        # Keep the path with the highest attempt
+        if normalized_path not in submission_dict or attempt_number > submission_dict[normalized_path][1]:
+            submission_dict[normalized_path] = (path, attempt_number)
 
-    # Return the list of file paths with the highest attempt
     return [value[0] for value in submission_dict.values()]
 
 def deduplicate_files_with_manual_fixes(file_list):
@@ -214,7 +216,7 @@ def parsed_submissions_quality_check(assignment_nr, assignment_id, submissions_p
 
     return df
 
-def load_latest_jsonified_student_submission(assignment_id: int, user_id: int, submission_path: str = "submissions") -> dict:
+def load_latest_jsonified_student_submission(assignment_id: int, user_id: int, submission_path: str = "submissions") -> Tuple[dict, int]:
     """Loadas the latest jsonified student submission which may be distributed over multiple files
     
     Args:
@@ -236,10 +238,12 @@ def load_latest_jsonified_student_submission(assignment_id: int, user_id: int, s
 
     # Create and return submission dict
     submission_dict = {}
+    attempt = 0
     for f in json_files:
         submission_dict.update(json.load(open(f)))
-    
-    return submission_dict
+        attempt = int(re.compile(r"try-(\d+)").search(f).group(1))
+
+    return submission_dict, attempt
 
 def extract_html_content(text: str, tag: str):
     # Pattern allows for optional closing tag and captures content inside

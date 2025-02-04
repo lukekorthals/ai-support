@@ -1,14 +1,11 @@
 
 from scripts.utils import create_file_list
 
-def update_canvas_grade(user_id, r_quiz_question_id, adv_quiz_question_id, quiz_submissions, points_r, points_adv, used_adv, grade, assignment):
+def update_canvas_grade(user_id, r_quiz_question_id, adv_quiz_question_id, quiz_submissions, points_r, points_adv, used_adv, grade, canvas_submission):
     # Get the quiz_submission for this student
     for quiz_submission in quiz_submissions:
         if quiz_submission.user_id == int(user_id):
             break
-
-    # Get the canvas submission for this student
-    canvas_submission = assignment.get_submission(user = user_id)
     
     # Generate data for updating the score and comments
     if r_quiz_question_id == adv_quiz_question_id:

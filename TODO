@@ -4,3 +4,10 @@ TODO: write README
 TODO: Fix environment for mac and windows 
 TODO: add requirements.txt for venv
 TODO: JSONIFICATION OF MULTIPLE FILES FIX
+
+
+Create Modules
+- Download Submissions Module
+- LLM Grading Module
+- LLM Feedback Module
+- Upload Grades / Comments module 

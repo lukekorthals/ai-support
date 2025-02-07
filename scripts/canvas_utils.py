@@ -16,6 +16,8 @@ def update_canvas_grade(user_id, r_quiz_question_id, adv_quiz_question_id, quiz_
                     "questions": {
                         str(r_quiz_question_id): {"score": points_r},
                         str(adv_quiz_question_id): {"score": points_adv, "comment": used_adv}}}]
+    
+    print(data)
 
     # Update the question scores and comments
     quiz_submission.update_score_and_comments(quiz_submissions=data)

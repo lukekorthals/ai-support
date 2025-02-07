@@ -1,4 +1,5 @@
 import os
+from openai import Completion
 
 def start_report_with_header(report_path: str, model: str, grading_temperature: float, feedback_temperature: float, n_choices_grading: int, n_choices_feedback: int, student_id: int, week: int):
     template = """# LLM Prompt Report
@@ -39,4 +40,33 @@ def add_text_to_report(report_path: str, text: str, start_new: bool = False):
         mode = "w"
     with open(report_path, mode) as f:
         f.write(text)
+
+def add_prompt_and_response_to_report(llm_report_out_path: str = None,
+                                      level_2_header: str = None,
+                                      details_label: str = "Details",
+                                      prompt_messages: list = None,
+                                      completion: Completion = None,
+                                      ):
     
+    # Get completion messages
+    completion_messages = [{"role": choice.message.role, "content": choice.message.content} for choice in completion.choices]
+    
+    # Add level 2 header
+    if level_2_header is not None:
+        add_text_to_report(llm_report_out_path, f"## Question {level_2_header}\n")
+    
+    # Start details
+    add_text_to_report(llm_report_out_path, f"<details>\n\t<summary>{details_label}</summary>\n\n")
+    
+
+    # Add prompt messages
+    if prompt_messages is not None:
+        add_messages_to_report(llm_report_out_path, prompt_messages, header="#### Prompts\n")
+
+    # Add completion messages
+    if completion_messages is not None:
+        add_messages_to_report(llm_report_out_path, completion_messages, header="#### Completion Choices\n")
+
+    # End details
+    
+    add_text_to_report(llm_report_out_path, f"\n\n</details>\n\n")

@@ -50,20 +50,3 @@ global LLM_FEEDBACK_REPORT_TEMPLATE
 global LLM_GRADING_REPORT_TEMPLATE
 RESOURCES_PATH = settings["global"]["paths"]["resources"]
 SUBMISSIONS_PATH = settings["global"]["paths"]["submissions"]
-STUDENT_SUBMISSION_TEMPLATE = settings["global"]["paths"]["student_submission_template"]
-STUDENT_SUBMISSION_JSON_TEMPLATE = settings["global"]["paths"]["student_submission_json_template"]
-LLM_COMPLETION_REPORT_TEMPLATE = settings["global"]["paths"]["llm_completion_report_template"]
-LLM_FEEDBACK_REPORT_TEMPLATE = settings["global"]["paths"]["llm_feedback_report_template"]
-LLM_GRADING_REPORT_TEMPLATE = settings["global"]["paths"]["llm_grading_report_template"]
-
-# Randomization 
-global GROUPS
-global SEED
-GROUPS = settings["global"]["randomization"]["groups"]
-SEED = settings["global"]["randomization"]["seed"]
-
-# Surveys
-global SURVEY_QUESTIONS
-global SURVEY_DEFINITIONS
-SURVEY_QUESTIONS = settings["surveys"]["survey_questions"]
-SURVEY_DEFINITIONS = settings["surveys"]["survey_definitions"]

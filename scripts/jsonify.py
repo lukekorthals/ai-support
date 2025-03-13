@@ -24,7 +24,7 @@ def jsonify(input_files: str | list, output_filename: str) -> list:
             text += f.read() + "\n\n\n"
         
     # Detect question indicators
-    indicators = re.compile(r"(#R\d+|#Radv\d+|#Python\d+):?\s*\n").findall(text)
+    indicators = re.compile(r"(#R\d+|#Radv\d+|#Python\d+|#P\d+):?\s*\n").findall(text)
 
     # Initialize the result dictionary
     result = {}
@@ -49,7 +49,6 @@ def jsonify(input_files: str | list, output_filename: str) -> list:
 
 def jsonify_resources(assignment_idx: int, resources_path: str = "resources") -> dict:
     """Jsonify all resources for a given assignment."""
-    assert assignment_idx in range(1, 5)
 
     # Ignore json and yaml files
     indicators_neg = [".json", ".yaml", ".html", "OLD"]

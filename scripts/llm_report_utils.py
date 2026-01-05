@@ -36,6 +36,8 @@ def add_messages_to_report(report_path: str, messages: list, header: str = "### 
         f.write(text)
 
 def add_text_to_report(report_path: str, text: str, start_new: bool = False):
+    folder_path = os.path.dirname(report_path)
+    os.makedirs(folder_path, exist_ok=True)
     mode = "a"
     if start_new:
         mode = "w"

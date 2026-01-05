@@ -1,5 +1,6 @@
 import os
 from openai import Completion
+from scripts.utils import ensure_folder_exists
 
 def start_report_with_header(report_path: str, model: str, grading_temperature: float, feedback_temperature: float, n_choices_grading: int, n_choices_feedback: int, student_id: int, week: int):
     template = """# LLM Prompt Report
@@ -38,6 +39,7 @@ def add_text_to_report(report_path: str, text: str, start_new: bool = False):
     mode = "a"
     if start_new:
         mode = "w"
+    ensure_folder_exists(report_path)
     with open(report_path, mode) as f:
         f.write(text)
 

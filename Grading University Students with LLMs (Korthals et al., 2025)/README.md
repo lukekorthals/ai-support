@@ -1,0 +1,4 @@
+# Readme
+For transparency, this subfolder contains the assignments, rubrics, and solutions used for:
+
+Korthals, L., Rosenbusch, H., Grasman, R., Visser, I. (2025). Grading University Students with LLMs: Performance and Acceptance of a Canvas-Based Automation. In: Cristea, A.I., Walker, E., Lu, Y., Santos, O.C., Isotani, S. (eds) Artificial Intelligence in Education. Posters and Late Breaking Results, Workshops and Tutorials, Industry and Innovation Tracks, Practitioners, Doctoral Consortium, Blue Sky, and WideAIED. AIED 2025. Communications in Computer and Information Science, vol 2591 . Springer, Cham. [https://doi.org/10.1007/978-3-031-99264-3_5](https://doi.org/10.1007/978-3-031-99264-3_5)

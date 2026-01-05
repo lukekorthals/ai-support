@@ -27,7 +27,7 @@ global:
     
   paths:
     resources: "resources"
-    submissions: "submissions"
+    submissions: "[EXAMPLE]submissions"
 
 assignments:
   1:
